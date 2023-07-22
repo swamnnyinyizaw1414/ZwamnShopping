@@ -3,8 +3,11 @@
 @section('content')
     <div class="text-center my-5">
         <h2 class="text-primary">Products</h2>
+        @error("product_name")
+            <p class="alert alert-info">You've already added that product...</p>
+        @enderror
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center">    
         @forelse($products as $p)
         <div class="col-3 m-3 card p-3 bg-white shadow">
             <div class="card-body">
@@ -30,7 +33,8 @@
                         <form action="{{url('add_to_cart',$p->id)}}" method="post">
                             @csrf
                             <div class="d-flex">
-                                <input type="number" class="form-control me-2" name="quantity" value=1>
+                                <input type="hidden" name="product_name" value="{{$p->name}}">
+                                <input type="number" class="form-control me-2" min="1" name="quantity" value=1> 
                                 <button class="btn btn-warning text-nowrap btn-sm">Add to cart</button>
                             </div>
                         </form>

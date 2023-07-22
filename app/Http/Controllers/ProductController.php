@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
@@ -121,6 +123,30 @@ class ProductController extends Controller
         $product=Product::find($id);        
         $product->delete();
         return redirect()->back()->with("status","A product is deleted...");
+    }
+
+    public function order(){
+        $orders=Order::latest()->paginate(8)->withQueryString();
+        $users=User::all();
+        return view('order.index',compact('orders','users'));
+    }
+
+    // public function delete_order($id){
+    //     $order=Order::find($id);
+    //     $order->delete();
+    //     return redirect()->back()->with('status',"You deleted an order...");
+    // }
+
+    // public function edit_order($id){
+    //     $order=Order::find($id);
+    //     return view('order.edit',compact('order'));
+    // }
+
+    public function delivered($id){
+        $order=Order::find($id);
+        $order->delivery_status="Delivered";
+        $order->save();
+        return redirect()->back();
     }
 
 }

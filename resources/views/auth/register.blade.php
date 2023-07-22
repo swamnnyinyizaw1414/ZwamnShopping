@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(session('status'))
+                <div class="alert alert-info d-flex justify-content-center">{{session('status')}}</div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -60,7 +63,9 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        <div class="row mb-2">
+                            <span class="text-center text-danger">If you have an account, you can <a href="{{url('/login')}}">login</a> here.</span>
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

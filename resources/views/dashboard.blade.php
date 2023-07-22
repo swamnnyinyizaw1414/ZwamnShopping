@@ -16,6 +16,10 @@
                     <a class="text-decoration-none" href="{{url('product/create')}}"><li class="list-group-item">Create Product</li></a>
                     <a class="text-decoration-none" href="{{url('product')}}"><li class="list-group-item">Product Lists</li></a>
                 </div>
+                <div class="mb-3">
+                    <label for="">Order</label>
+                    <a class="text-decoration-none" href="{{url('order')}}"><li class="list-group-item">Order</li></a>
+                </div>
             </ul>
         </div>
         <!-- sidebar end -->

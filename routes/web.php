@@ -37,6 +37,12 @@ Route::put('/category/update/{id}',[CategoryController::class,'update']);
 //Product
 Route::resource('product',ProductController::class);
 
+//Order
+Route::get('/order',[ProductController::class,'order']);
+Route::delete('/order/{id}',[ProductController::class,'delete_order']);
+Route::get('/order/edit/{id}',[ProductController::class,'edit_order']);
+Route::post('/delivered/{id}',[ProductController::class,'delivered']);
+
 //End Admin Part
 
 // Start Customer part
@@ -45,5 +51,7 @@ Route::get('/',[HomeController::class,'index']);
 Route::get('/products',[CustomerController::class,'products']);
 Route::post('/add_to_cart/{id}',[CustomerController::class,'add_to_cart']);
 Route::get('/carts',[CustomerController::class,'show_carts']);
+Route::delete('/destroy_cart/{id}',[CustomerController::class,'destroy_cart']);
+Route::post('/cash_delivery',[CustomerController::class,'cash_delivery']);
 
 //End Customer part
