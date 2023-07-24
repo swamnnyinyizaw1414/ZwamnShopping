@@ -8,12 +8,12 @@
 </head>
 <body>  
 
-<section>
+<section class="bg-white">
 
 <!--start nav -->
-<nav class="navbar navbar-expand-lg bg-light shadow">
-  <div class="container-fluid d-flex justify-content-between my-2">
-    <a class="navbar-bran mx-3 text-decoration-none text-danger" href="#"><h3>ZwamnShopping</h3></a>
+<nav class="navbar navbar-expand-lg bg-white">
+  <div class="container-fluid d-flex justify-content-between mt-3">
+    <a class="navbar-bran mx-3 text-decoration-none text-danger" href="/"><h3 class="text-success fw-bold">Zwamn<span class="text-black">Shopping</span></h3></a>
     <div class="mx-3">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,6 +63,7 @@
     </div>
   </div>
 </nav>
+<hr>    
 <!-- end nav -->
 
 <div class="container">

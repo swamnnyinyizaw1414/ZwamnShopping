@@ -125,8 +125,13 @@ class ProductController extends Controller
         return redirect()->back()->with("status","A product is deleted...");
     }
 
-    public function order(){
-        $orders=Order::latest()->paginate(8)->withQueryString();
+    public function order(Request $request){
+        $start=$request->start;
+        $end=$request->end;
+        $orders=Order::when(request(['start','end']),function($query) use ($start,$end){
+            $query->whereDate('created_at','<=',$end)
+            ->whereDate('created_at','>=',$start);
+        })->latest()->paginate(8)->withQueryString();
         $users=User::all();
         return view('order.index',compact('orders','users'));
     }

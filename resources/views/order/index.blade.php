@@ -8,7 +8,18 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <h1 class="font-weight-bold">Order Lists</h1>
+            <div class="d-flex justify-content-between">
+                <h1 class="font-weight-bold">Order Lists</h1>
+                <div class="d-flex align-items-center">
+                    <form action="{{url('order')}}" class="d-flex align-items-center">
+                        <span class="me-1">From:</span><input type="date" class="form-control me-2" name="start" required>
+                        <span class="me-1 ms-2">To:</span><input type="date" class="form-control" name="end" required> 
+                        <button type="submit" class="btn btn-primary ms-2">Search</button>
+                    </form>
+
+                    <a href="{{url('/order')}}" class="btn btn-info ms-2">No Filter</a>
+                </div>
+            </div>
             <hr>
             <table class="table" style="display: block; overflow-x: auto; white-space: nowrap;">
                 <thead>
@@ -30,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($orders as $order)
+                    @forelse($orders as $order)
                     <tr class="text-center">
                         <td>{{$order->id}}</td>
                         <td>{{$order->product}}</td>
@@ -73,7 +84,11 @@
                             @endif
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="14" class="text-center text-danger fw-bold">There is no order...</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
             <div class="d-flex justify-content-end">

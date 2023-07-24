@@ -18,7 +18,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="">Order</label>
-                    <a class="text-decoration-none" href="{{url('order')}}"><li class="list-group-item">Order</li></a>
+                    <a class="text-decoration-none" href="{{url('order')}}"><li class="list-group-item">Order Lists</li></a>
+                </div>
+                <div class="mb-3">
+                    <a href="{{url('/')}}" class="text-decoration-none">
+                        <li class="list-group-item bg-warning">Home</li>
+                    </a>
                 </div>
             </ul>
         </div>

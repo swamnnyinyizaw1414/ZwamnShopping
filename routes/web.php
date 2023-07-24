@@ -19,29 +19,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
 
 Auth::routes();
 
 // Start Admin part
 
-//Category
-Route::get('/category/create',[CategoryController::class,'create']);
-Route::post('/category/store',[CategoryController::class,'store']);
-Route::get('/category',[CategoryController::class,'index']);
-Route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
-Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
-Route::put('/category/update/{id}',[CategoryController::class,'update']);
-//Product
-Route::resource('product',ProductController::class);
+Route::middleware("admin")->group(function(){
 
-//Order
-Route::get('/order',[ProductController::class,'order']);
-Route::delete('/order/{id}',[ProductController::class,'delete_order']);
-Route::get('/order/edit/{id}',[ProductController::class,'edit_order']);
-Route::post('/delivered/{id}',[ProductController::class,'delivered']);
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    //Category
+    Route::get('/category/create',[CategoryController::class,'create']);
+    Route::post('/category/store',[CategoryController::class,'store']);
+    Route::get('/category',[CategoryController::class,'index']);
+    Route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
+    Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
+    Route::put('/category/update/{id}',[CategoryController::class,'update']);
+    //Product
+    Route::resource('product',ProductController::class);
+
+    //Order
+    Route::get('/order',[ProductController::class,'order']);
+    Route::delete('/order/{id}',[ProductController::class,'delete_order']);
+    Route::get('/order/edit/{id}',[ProductController::class,'edit_order']);
+    Route::post('/delivered/{id}',[ProductController::class,'delivered']);
+});
 
 //End Admin Part
 
