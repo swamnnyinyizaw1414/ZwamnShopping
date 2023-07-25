@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('product.create',compact('categories'));
+        $brands=Brand::all();
+        return view('product.create',compact('categories','brands'));
     }
 
     /**
@@ -43,9 +45,9 @@ class ProductController extends Controller
             "price"=>["required","numeric","min:1"],
             "discount_price"=>["nullable","numeric","min:1"],
             "quantity"=>["required","numeric","min:1"],
-            "brand"=>["required"],
             "category_id"=>["required",Rule::exists("categories","id")],
-            "photo"=>["nullable","file","mimes:jpeg,png","max:512"]
+            "brand_id"=>["required",Rule::exists("brands","id")],
+            "photo"=>["required","file","mimes:jpeg,jpg,webp,png","max:512"]
         ]);
 
         $product=new Product();
@@ -54,8 +56,8 @@ class ProductController extends Controller
         $product->price=$request->price;
         $product->discount_price=$request->discount_price;
         $product->quantity=$request->quantity;
-        $product->brand=$request->brand;
         $product->category_id=$request->category_id;
+        $product->brand_id=$request->brand_id;
         if($request->file("photo")!=null){
             $product->photo=$request->file("photo")->store("product_photos");
         }
@@ -79,7 +81,8 @@ class ProductController extends Controller
     {
         $product=Product::find($id);
         $categories=Category::all();
-        return view("product.edit",compact('product','categories'));
+        $brands=Brand::all();
+        return view("product.edit",compact('product','categories','brands'));
     }
 
     /**
@@ -94,8 +97,8 @@ class ProductController extends Controller
             "price"=>["required","numeric","min:1"],
             "discount_price"=>["nullable","numeric","min:1"],
             "quantity"=>["required","numeric","min:1"],
-            "brand"=>["required"],
             "photo"=>["nullable","file","mimes:jpeg,png","max:512"],
+            "category_id"=>["required",Rule::exists("categories","id")],
             "category_id"=>["required",Rule::exists("categories","id")],
         ]);
         
@@ -104,11 +107,11 @@ class ProductController extends Controller
         $product->price=$request->price;
         $product->discount_price=$request->discount_price;
         $product->quantity=$request->quantity;
-        $product->brand=$request->brand;
         if($request->file("photo")!=null){
             $product->photo=$request->file("photo")->store("product_photos");
         }
         $product->category_id=$request->category_id;
+        $product->brand_id=$request->brand_id;
         $product->user_id=Auth::id();
         $product->save();
 

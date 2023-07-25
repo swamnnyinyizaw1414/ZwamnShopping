@@ -19,6 +19,10 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function Brand(){
+        return $this->belongsTo(Brand::class);
+    }
+
     public function scopeFilter($query,$filter){
         $query->when($filter['search']??false,function($query,$search){
             $query->where(function($query) use ($search){

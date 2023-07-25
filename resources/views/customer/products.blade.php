@@ -9,12 +9,12 @@
     </div>
     <div class="row justify-content-center">    
         @forelse($products as $p)
-        <div class="col-3 m-3 card p-3 bg-white shadow">
+        <div class="col-3 card bg-white m-2">
             <div class="card-body">
-                <div class="text-center" style="width: 100%; height: 50%;">
-                    <img width="100%" height="100%" class="my-3" src='{{asset("storage/$p->photo")}}' alt="">
+                <div class="text-center">
+                    <img width="80%" class="" src='{{asset("storage/$p->photo")}}' alt="">
                 </div>
-                <div class="mt-5" >
+                <div class="" >
                     <div class="">Product - <span class="">{{$p->name}}</span></div>
                     <div class="">Category - <span class="badge badge-primary bg-primary">{{$p->category->name}}</span></div>
                     <div>
@@ -22,7 +22,7 @@
                         <div>
                             Price - 
                             <span class="" style="text-decoration: line-through;">${{$p->price}}</span>
-                            <span class="text-success">${{$p->discount_price}}</span>
+                            <span class="text-danger fw-bold">${{$p->discount_price}}</span>
                         </div>   
                         @else
                         <span>Price - ${{$p->price}}</span>

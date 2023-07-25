@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('price');
             $table->string('discount_price')->nullable();
             $table->string('quantity');
-            $table->string('brand');
+            $table->string("photo")->default("default.png");
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

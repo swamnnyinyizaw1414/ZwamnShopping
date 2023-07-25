@@ -46,13 +46,6 @@
                     <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="brand" class="form-label">Brand</label>
-                    <input type="text" class="form-control" value="{{old('brand',$product->brand)}}" id="brand" name="brand">
-                    @error('brand')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
                 <div class="mb-1">
                     <label for="photo" class="form-label">Photo</label>
                     <input type="file" class="form-control" value="{{old('photo',$product->photo)}}" id="photo" name="photo">
@@ -62,6 +55,14 @@
                 </div>
                 <div class="mb-3">
                     <img src='{{asset("storage/$product->photo")}}' width="80" alt="">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Brand</label>
+                    <select name="brand_id" class="form-select" id="">
+                        @foreach($brands as $b)
+                        <option {{$b->id==old("brand_id") || $b->id==$product->brand_id ? 'selected' : ''}} value="{{$b->id}}">{{$b->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Category</label>

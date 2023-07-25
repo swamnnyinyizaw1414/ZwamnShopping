@@ -62,7 +62,7 @@
                         <td><p class="badge badge-info bg-info">No discount</p></td>
                         @endif
                         <td>{{$product->quantity}}</td>
-                        <td>{{$product->brand}}</td>
+                        <td>{{$product->brand->name}}</td>
                         <td>
                             <img src='{{asset("storage/$product->photo")}}' width="50" alt="">
                         </td>

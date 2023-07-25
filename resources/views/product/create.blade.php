@@ -46,19 +46,26 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="brand" class="form-label">Brand</label>
-                    <input type="text" class="form-control" value="{{old('brand')}}" id="brand" name="brand">
-                    @error('brand')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-3">
                     <label for="" class="form-label">Category</label>
                     <select name="category_id" class="form-select" id="">
                         @foreach($categories as $c)
                         <option {{$c->id==old("category_id")? 'selected' : ''}} value="{{$c->id}}">{{$c->name}}</option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Brand</label>
+                    <select name="brand_id" class="form-select" id="">
+                        @foreach($brands as $b)
+                        <option {{$b->id==old("brand_id")? 'selected' : ''}} value="{{$b->id}}">{{$b->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('brand_id')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="photo" class="form-label">Photo</label>
