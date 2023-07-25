@@ -12,6 +12,11 @@
                     <a class="text-decoration-none" href="{{url('category')}}"><li class="list-group-item">Category Lists</li></a>
                 </div>
                 <div class="mb-3">
+                    <label for="">Brand</label>
+                    <a class="text-decoration-none" href="{{url('brand/create')}}"><li class="list-group-item">Add New Brand</li></a>
+                    <a class="text-decoration-none" href="{{url('brand')}}"><li class="list-group-item">Brand Lists</li></a>
+                </div>
+                <div class="mb-3">
                     <label for="">Product</label>
                     <a class="text-decoration-none" href="{{url('product/create')}}"><li class="list-group-item">Create Product</li></a>
                     <a class="text-decoration-none" href="{{url('product')}}"><li class="list-group-item">Product Lists</li></a>

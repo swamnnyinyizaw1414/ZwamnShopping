@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -46,6 +47,14 @@ Route::middleware("admin")->group(function(){
     Route::delete('/order/{id}',[ProductController::class,'delete_order']);
     Route::get('/order/edit/{id}',[ProductController::class,'edit_order']);
     Route::post('/delivered/{id}',[ProductController::class,'delivered']);
+
+    //Brand Category
+    Route::get('/brand/create',[BrandController::class,'create']);
+    Route::post('/brand/store',[BrandController::class,'store']);
+    Route::get('/brand',[BrandController::class,'index']);
+    Route::delete('/brand/delete/{id}',[BrandController::class,'delete']);
+    Route::get('/brand/edit/{id}',[BrandController::class,'edit']);
+    Route::put('/brand/update/{id}',[BrandController::class,'update']);
 });
 
 //End Admin Part

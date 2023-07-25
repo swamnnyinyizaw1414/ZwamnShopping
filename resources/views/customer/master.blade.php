@@ -6,9 +6,9 @@
     <title>Document</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>  
+<body class="bg-white">  
 
-<section class="bg-white">
+<section class="" style="min-height: 100%">
 
 <!--start nav -->
 <nav class="navbar navbar-expand-lg bg-white">
