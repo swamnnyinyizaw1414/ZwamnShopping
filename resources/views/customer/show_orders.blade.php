@@ -31,10 +31,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse($orders as $order)
                         <?php 
                             $totalPrice=0;
                         ?>
+                    @forelse($orders as $order)
                         <tr class="text-center">
                             <td>{{$order->product}}</td>
                             <td>${{$order->price}}</td>

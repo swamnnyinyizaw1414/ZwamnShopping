@@ -3,6 +3,23 @@
 @section('content')
     <div class="text-center my-5">
         <h2 class="text-primary">Products</h2>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Brands
+            </button>
+            <ul class="dropdown-menu">
+                @foreach($brands as $brand)
+                <li>
+                    <form action="{{url('/products')}}">
+                        <input type="hidden" name="brand" value="$brand->id">
+                        <button type="submit" class="dropdown-item">{{$brand->name}}</button>
+                    </form>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+
         @error("product_name")
             <p class="alert alert-info">You've already added that product...</p>
         @enderror

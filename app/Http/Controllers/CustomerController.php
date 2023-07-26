@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -15,7 +17,13 @@ class CustomerController extends Controller
 {
     public function products(){
         $products=Product::latest()->paginate(6)->withQueryString();
-        return view('customer.products',compact('products'));
+        // $brands=Brand::all();
+        // $genders=Category::all();
+        // if(request('brand')){
+        //     $brand_id=request('brand');
+        //     $products=Product::where("brand_id",)->latest()->paginate(6)->withQueryString();
+        // }
+        return view('customer.products',compact('products','brands','genders'));
     }
     
     public function add_to_cart(Request $request,$id){
