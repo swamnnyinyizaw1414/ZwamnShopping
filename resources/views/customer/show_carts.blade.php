@@ -28,7 +28,7 @@
                         <?php 
                             $totalPrice=0;
                         ?>
-                        @foreach($carts as $cart)
+                        @forelse($carts as $cart)
                         <tr class="text-center">
                             <td>{{$cart->product_name}}</td>
                             @if($cart->discount_price!=null)
@@ -64,7 +64,13 @@
                             }
                         ?>
 
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="6">
+                                <p class="text-danger fw-bold text-center mt-3">Thre is no cart yet... </p>
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end mx-5"><h5 class="">Total Price - ${{$totalPrice}}</h5></div>
@@ -79,13 +85,6 @@
                         @csrf
                         <div class="my-2 d-flex justify-content-center">
                             <div class="col-5">
-                                <div class="form-group mb-3"> 
-                                    <label for="">Email</label>
-                                    <input type="email" name="email" value="{{old('email')}}" class="form-control" required>
-                                    @error('email')
-                                        <p class="text-danger">{{$message}}</p>
-                                    @enderror
-                                </div>
                                 <div class="form-group mb-3"> 
                                     <label for="">Phone</label>
                                     <input type="number" min="1" name="phone" value="{{old('phone')}}" class="form-control" required>

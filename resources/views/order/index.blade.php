@@ -37,6 +37,7 @@
                         <th>Payment Status</th>
                         <th>Delivery Status</th>
                         <th>Created_at</th>
+                        <th>Order Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -65,6 +66,18 @@
                         </td>
                         <td>{{$order->created_at->format('Y-m-d | H:i A')}}</td>
                         <td>
+                            <div class="">
+                                @if($order->is_confirmed=="0")
+                                <form action="{{url('/order_confirmed',$order->id)}}" method="post">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Are you sure this order is confirmed?')" class="btn text-white " style="background-color: #fc5c9c;">Order_confirmed</button>
+                                </form>
+                                @else
+                                <p>Order_confirmed</p>
+                                @endif
+                            </div>
+                        </td>
+                        <td>
                             <!-- <div class="d-flex">
                                 <form action="{{url('/order',$order->id)}}" class="me-1" method="post">
                                     @csrf
@@ -74,14 +87,16 @@
                                 <a href='{{url("order/$order->id/edit")}}' class="btn btn-warning btn-sm">Edit</a>
                             </div> -->
 
-                            @if($order->delivery_status=="Processing")
-                            <form action="{{url('/delivered',$order->id)}}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-success">Delivered</button>
-                            </form>
-                            @else
-                            <p>Delivered</p>
-                            @endif
+                            <div class="">
+                                @if($order->delivery_status=="Processing")
+                                <form action="{{url('/delivered',$order->id)}}" class="ms-1" method="post">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Are you sure this order is delivered?')" class="btn btn-success">Delivered</button>
+                                </form>
+                                @else
+                                <p>Delivered</p>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                     @empty

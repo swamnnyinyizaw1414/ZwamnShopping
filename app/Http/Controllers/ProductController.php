@@ -150,6 +150,13 @@ class ProductController extends Controller
     //     return view('order.edit',compact('order'));
     // }
 
+    public function order_confirmed($id){
+        $order=Order::find($id);
+        $order->is_confirmed="1";
+        $order->save();
+        return redirect()->back();
+    }
+
     public function delivered($id){
         $order=Order::find($id);
         $order->delivery_status="Delivered";

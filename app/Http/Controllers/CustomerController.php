@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class CustomerController extends Controller
         $cart->product_name=$request->product_name;
         $cart->price=$product->price;
         $cart->discount_price=$product->discount_price;
-        $cart->brand=$product->brand;
+        $cart->brand=$product->brand->name;
         $cart->quantity=$request->quantity;
         $cart->image=$product->photo;
         $cart->user_id=Auth::id();
@@ -52,7 +53,6 @@ class CustomerController extends Controller
     public function cash_delivery(Request $request){
         $carts=Cart::where("user_id",Auth::id())->get();
         $request->validate([
-            "email"=>["required","email",'exists:users,email'],
             "phone"=>["required","numeric"],
             "address"=>["required"]
         ]);
@@ -68,7 +68,7 @@ class CustomerController extends Controller
             }
             $order->price=$price;
             $order->product_image=$cart->image;
-            $order->email=$request->email;
+            $order->email=Auth::user()->email;
             $order->address=$request->address;
             $order->phone=$request->phone;
             $order->user_id=Auth::id();
@@ -81,6 +81,19 @@ class CustomerController extends Controller
             $cart->delete();
         }
         return redirect()->back()->with("status","We've received your order. We will contact you later.");
+    }
+
+    public function show_orders(){
+        $currentUserId=Auth::user()->id;
+        $customerName=User::find($currentUserId)->name;
+        $orders=Order::where("user_id",$currentUserId)->latest()->paginate(8)->withQueryString();
+        return view('customer.show_orders',compact('orders','customerName'));
+    }
+
+    public function destroy_order($id){
+        $order=Order::find($id);
+        $order->delete();
+        return redirect()->back()->with("status","You cancelled this order...");
     }
 
 }

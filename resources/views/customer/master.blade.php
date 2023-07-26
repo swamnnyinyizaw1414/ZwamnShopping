@@ -27,7 +27,7 @@
             <a class="nav-link" href="{{url('/carts')}}">Cart</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Order</a>
+            <a class="nav-link" href="{{url('/orders')}}">Order</a>
             </li>
             @guest
             <li class="nav-item">
