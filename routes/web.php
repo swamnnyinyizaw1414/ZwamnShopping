@@ -63,12 +63,15 @@ Route::middleware("admin")->group(function(){
 
 Route::get('/',[HomeController::class,'index']);
 Route::get('/products',[CustomerController::class,'products']);
-Route::post('/add_to_cart/{id}',[CustomerController::class,'add_to_cart']);
-Route::get('/carts',[CustomerController::class,'show_carts']);
-Route::delete('/destroy_cart/{id}',[CustomerController::class,'destroy_cart']);
-Route::post('/cash_delivery',[CustomerController::class,'cash_delivery']);
-//order part
-Route::get('/orders',[CustomerController::class,'show_orders']);
-Route::delete('/destroy_order/{id}',[CustomerController::class,'destroy_order']);
-Route::post('/order_confirmed/{id}',[ProductController::class,'order_confirmed']);
+
+Route::middleware('auth')->group(function(){
+    Route::post('/add_to_cart/{id}',[CustomerController::class,'add_to_cart']);
+    Route::get('/carts',[CustomerController::class,'show_carts']);
+    Route::delete('/destroy_cart/{id}',[CustomerController::class,'destroy_cart']);
+    Route::post('/cash_delivery',[CustomerController::class,'cash_delivery']);
+    //order part
+    Route::get('/orders',[CustomerController::class,'show_orders']);
+    Route::delete('/destroy_order/{id}',[CustomerController::class,'destroy_order']);
+    Route::post('/order_confirmed/{id}',[ProductController::class,'order_confirmed']);
+});
 //End Customer part

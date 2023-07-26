@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name"=>["required","min:3","max:50"],
+            "name"=>["required","min:3","max:100"],
             "slug"=>["required",Rule::unique('products')],
             "price"=>["required","numeric","min:1"],
             "discount_price"=>["nullable","numeric","min:1"],
@@ -92,12 +92,12 @@ class ProductController extends Controller
     {
         $product=Product::find($id);
         $request->validate([
-            "name"=>["required","min:3","max:50"],
+            "name"=>["required","min:3","max:100"],
             "slug"=>["required",Rule::unique('products')->ignore($product->id)],
             "price"=>["required","numeric","min:1"],
             "discount_price"=>["nullable","numeric","min:1"],
             "quantity"=>["required","numeric","min:1"],
-            "photo"=>["nullable","file","mimes:jpeg,png","max:512"],
+            "photo"=>["nullable","file","mimes:jpeg,jpg,webp,png","max:512"],
             "category_id"=>["required",Rule::exists("categories","id")],
             "category_id"=>["required",Rule::exists("categories","id")],
         ]);

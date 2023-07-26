@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">    
         @forelse($products as $p)
-        <div class="col-3 card bg-white m-2">
+        <div class="col-3 card bg-white mx-2 my-3">
             <div class="card-body">
                 <div class="text-center">
                     <img width="80%" class="" src='{{asset("storage/$p->photo")}}' alt="">
