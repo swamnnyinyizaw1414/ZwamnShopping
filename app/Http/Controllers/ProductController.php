@@ -24,6 +24,13 @@ class ProductController extends Controller
         return view("product.index",compact("products","categories","currentCategory"));
     }
 
+    public function customerProducts(){
+        $products=Product::latest()->filter(request(['brand']))->paginate(6)->withQueryString();
+        $brands=Brand::all();
+        $currentBrand=Brand::firstWhere("slug",request("brand"));
+        return view('customer.products',compact('products','brands','currentBrand'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

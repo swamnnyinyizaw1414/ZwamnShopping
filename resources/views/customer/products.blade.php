@@ -5,18 +5,18 @@
         <h2 class="text-primary">Products</h2>
 
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Brands
+            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
             </button>
             <ul class="dropdown-menu">
                 @foreach($brands as $brand)
                 <li>
-                    <form action="{{url('/products')}}">
-                        <input type="hidden" name="brand" value="$brand->id">
-                        <button type="submit" class="dropdown-item">{{$brand->name}}</button>
-                    </form>
+                    <a class="dropdown-item" href="?brand={{$brand->slug}}">{{$brand->name}}</a>
                 </li>
                 @endforeach
+                <li>
+                    <a class="dropdown-item" href="/products">All</a>
+                </li>
             </ul>
         </div>
 

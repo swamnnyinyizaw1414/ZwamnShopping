@@ -36,6 +36,12 @@ class Product extends Model
                 $query->where("slug",$category);
             });
         });
+
+        $query->when($filter['brand']??false,function($query,$brand){
+            $query->whereHas('brand',function($query) use($brand){
+                $query->where("slug",$brand);
+            });
+        });
     }
 
 }

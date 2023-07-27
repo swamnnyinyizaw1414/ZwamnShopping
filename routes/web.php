@@ -62,7 +62,7 @@ Route::middleware("admin")->group(function(){
 // Start Customer part
 
 Route::get('/',[HomeController::class,'index']);
-Route::get('/products',[CustomerController::class,'products']);
+Route::get('/products',[ProductController::class,'customerProducts']);
 
 Route::middleware('auth')->group(function(){
     Route::post('/add_to_cart/{id}',[CustomerController::class,'add_to_cart']);

@@ -15,16 +15,9 @@ use Illuminate\Validation\Rule as ValidationRule;
 
 class CustomerController extends Controller
 {
-    public function products(){
-        $products=Product::latest()->paginate(6)->withQueryString();
-        // $brands=Brand::all();
-        // $genders=Category::all();
-        // if(request('brand')){
-        //     $brand_id=request('brand');
-        //     $products=Product::where("brand_id",)->latest()->paginate(6)->withQueryString();
-        // }
-        return view('customer.products',compact('products','brands','genders'));
-    }
+    // public function products(){
+        
+    // }
     
     public function add_to_cart(Request $request,$id){
         if(!auth()->user()){
