@@ -42,6 +42,13 @@ class Product extends Model
                 $query->where("slug",$brand);
             });
         });
+
+        $query->when($filter['gender']??false,function($query,$gender){
+            $query->whereHas('category',function($query) use($gender){
+                $query->where("slug",$gender);
+            });
+        });
+
     }
 
 }

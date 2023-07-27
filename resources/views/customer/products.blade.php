@@ -2,22 +2,40 @@
 
 @section('content')
     <div class="text-center my-5">
-        <h2 class="text-primary">Products</h2>
+        <h2 class="text-primary fw-bold ">Products</h2>
 
-        <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
-            </button>
-            <ul class="dropdown-menu">
-                @foreach($brands as $brand)
-                <li>
-                    <a class="dropdown-item" href="?brand={{$brand->slug}}">{{$brand->name}}</a>
-                </li>
-                @endforeach
-                <li>
-                    <a class="dropdown-item" href="/products">All</a>
-                </li>
-            </ul>
+        <div class="d-flex justify-content-end">
+            <div class="dropdown me-2">
+                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach($brands as $brand)
+                    <li>
+                        <a class="dropdown-item" href="?brand={{$brand->slug}}">{{$brand->name}}</a>
+                    </li>
+                    @endforeach
+                    <li>
+                        <a class="dropdown-item" href="/products">All</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{isset($currentGender)? $currentGender->name : "Filter By Gender"}}
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach($genders as $gender)
+                    <li>
+                        <a class="dropdown-item" href="?gender={{$gender->slug}}">{{$gender->name}}</a>
+                    </li>
+                    @endforeach
+                    <li>
+                        <a class="dropdown-item" href="/products">All</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         @error("product_name")

@@ -25,10 +25,12 @@ class ProductController extends Controller
     }
 
     public function customerProducts(){
-        $products=Product::latest()->filter(request(['brand']))->paginate(6)->withQueryString();
+        $products=Product::latest()->filter(request(['brand','gender']))->paginate(6)->withQueryString();
         $brands=Brand::all();
         $currentBrand=Brand::firstWhere("slug",request("brand"));
-        return view('customer.products',compact('products','brands','currentBrand'));
+        $genders=Category::all();
+        $currentGender=Category::firstWhere("slug",request("gender"));
+        return view('customer.products',compact('products','brands','currentBrand','genders','currentGender'));
     }
 
     /**
