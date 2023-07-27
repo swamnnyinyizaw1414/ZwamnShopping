@@ -5,14 +5,14 @@
         <h2 class="text-primary fw-bold ">Products</h2>
 
         <div class="d-flex justify-content-end">
-            <div class="dropdown me-2">
+            <div class="dropdown me-1">
                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
                 </button>
                 <ul class="dropdown-menu">
                     @foreach($brands as $brand)
                     <li>
-                        <a class="dropdown-item" href="?brand={{$brand->slug}}">{{$brand->name}}</a>
+                        <a class="dropdown-item" href="?brand={{$brand->slug}} {{request('gender')? '&gender='.request('gender') : ''}}">{{$brand->name}}</a>
                     </li>
                     @endforeach
                     <li>
@@ -28,7 +28,7 @@
                 <ul class="dropdown-menu">
                     @foreach($genders as $gender)
                     <li>
-                        <a class="dropdown-item" href="?gender={{$gender->slug}}">{{$gender->name}}</a>
+                        <a class="dropdown-item" href="?gender={{$gender->slug}} {{request('brand')? '&brand='.request('brand') : ''}}">{{$gender->name}}</a>
                     </li>
                     @endforeach
                     <li>
