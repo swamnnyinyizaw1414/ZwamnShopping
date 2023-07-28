@@ -1,40 +1,51 @@
 @extends('customer.master')
 
 @section('content')
-    <div class="text-center my-5">
-        <h2 class="text-primary fw-bold ">Products</h2>
+    <div class="text-center mt-5 mb-4">
+        <h2 class="text-primary fw-bold mb-5">Products</h2>
 
-        <div class="d-flex justify-content-end">
-            <div class="dropdown me-1">
-                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach($brands as $brand)
-                    <li>
-                        <a class="dropdown-item" href="?brand={{$brand->slug}} {{request('gender')? '&gender='.request('gender') : ''}}">{{$brand->name}}</a>
-                    </li>
-                    @endforeach
-                    <li>
-                        <a class="dropdown-item" href="/products">All</a>
-                    </li>
-                </ul>
+        <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-center">
+                <div class="dropdown me-1">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{isset($currentBrand)? $currentBrand->name : "Filter By Brand"}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach($brands as $brand)
+                        <li>
+                            <a class="dropdown-item" href="?brand={{$brand->slug}} {{request('gender')? '&gender='.request('gender') : ''}}">{{$brand->name}}</a>
+                        </li>
+                        @endforeach
+                        <li>
+                            <a class="dropdown-item" href="{{request('gender')? '?gender='.request('gender') : '/products'}}">All</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{isset($currentGender)? $currentGender->name : "Filter By Gender"}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach($genders as $gender)
+                        <li>
+                            <a class="dropdown-item" href="?gender={{$gender->slug}} {{request('brand')? '&brand='.request('brand') : ''}}">{{$gender->name}}</a>
+                        </li>
+                        @endforeach
+                        <li>
+                            <a class="dropdown-item" href="{{request('brand')? '?brand='.request('brand') : '/products'}}">All</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{isset($currentGender)? $currentGender->name : "Filter By Gender"}}
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach($genders as $gender)
-                    <li>
-                        <a class="dropdown-item" href="?gender={{$gender->slug}} {{request('brand')? '&brand='.request('brand') : ''}}">{{$gender->name}}</a>
-                    </li>
-                    @endforeach
-                    <li>
-                        <a class="dropdown-item" href="/products">All</a>
-                    </li>
-                </ul>
+            <div>
+                <form action="?search={{request('searchForCustomer')}}">
+                    <div class="d-flex"> 
+                        <input type="text" class="form-control me-1" name="searchForCustomer">
+                        <button class="btn btn-dark" type="submit">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -44,7 +55,7 @@
     </div>
     <div class="row justify-content-center">    
         @forelse($products as $p)
-        <div class="col-3 card bg-white mx-2 my-3">
+        <div class="col-3 card bg-white m-3">
             <div class="card-body">
                 <div class="text-center">
                     <img width="80%" class="" src='{{asset("storage/$p->photo")}}' alt="">

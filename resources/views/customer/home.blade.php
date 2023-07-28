@@ -5,8 +5,14 @@
     <div class="col-6">
         <h1 class="fw-bold">Welcome to <span class="text-success">ZwamnShopping......</span></h1>
         <p class="fw-bold text-secondary mt-3 w-75">ZwamnShopping was created to fill the void in modern footwear. We blend fashion and functionality to create a shoe just as versatile as the people who wear them.</p>
-        <button class="btn btn-warning">See All Products</button>
-        <button class="btn btn-info">Sing Up Now</button>
+        <div class="">
+        <a href="{{url('/products')}}" class="btn btn-warning">See All Products</a>
+        @guest()
+        <a href="{{url('/register')}}" class="btn btn-info">Sing Up Now</a>
+        @else
+        <a href="{{url('/show_orders')}}" class="btn btn-info">Your Orders</a>
+        @endguest
+        </div>
         <div class="px-4 py-5" style="position: absolute; left:0; bottom:0;">
             <i class="bi bi-facebook me-2 my-2 d-block" style="font-size: 20px;"></i>
             <i class="bi bi-instagram me-2 my-2 d-block" style="font-size: 20px;"></i>
@@ -18,7 +24,7 @@
         <img class="w-100" src="https://freepngimg.com/save/112096-converse-black-shoes-free-clipart-hd/512x512" alt="">
     </div>
     
-    <div class="col-12">
+    <!-- <div class="col-12">
         <div id="carouselExampleControls" class="carousel slide w-100" data-bs-ride="carousel">
             <div class="carousel-inner w-100">
                 <div class="carousel-item active d-flex">
@@ -40,6 +46,6 @@
                 <span class="visually-hidden">Next</span>
             </button>
             </div>
-        </div>
+        </div> -->
 </div>
 @endsection

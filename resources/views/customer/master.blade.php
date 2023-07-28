@@ -8,7 +8,7 @@
 </head>
 <body class="bg-white">  
 
-<section class="" style="min-height: 100%">
+<section class="container" style="min-height: 100%">
 
 <!--start nav -->
 <nav class="navbar navbar-expand-lg bg-white">
@@ -66,13 +66,11 @@
 <hr>    
 <!-- end nav -->
 
-<div class="container">
     <div class="row">
         <div class="col-md-12">
             @yield('content')
         </div>
     </div>
-</div>
 
 </section>
 

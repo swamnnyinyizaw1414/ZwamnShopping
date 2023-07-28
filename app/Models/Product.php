@@ -49,6 +49,12 @@ class Product extends Model
             });
         });
 
+        $query->when($filter['searchForCustomer']??false,function($query,$search){
+            $query->where(function($query) use ($search){
+                $query->where("name","Like","%".$search."%");
+            });
+        });
+
     }
 
 }
