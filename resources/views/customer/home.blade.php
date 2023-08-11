@@ -10,7 +10,7 @@
         @guest()
         <a href="{{url('/register')}}" class="btn btn-info">Sing Up Now</a>
         @else
-        <a href="{{url('/show_orders')}}" class="btn btn-info">Your Orders</a>
+        <a href="{{url('/orders')}}" class="btn btn-info">Your Orders</a>
         @endguest
         </div>
         <div class="px-4 py-5" style="position: absolute; left:0; bottom:0;">

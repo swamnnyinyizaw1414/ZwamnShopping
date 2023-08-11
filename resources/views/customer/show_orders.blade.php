@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             @if(session("status"))
-                <div class="text-center">
+                <div class="text-center border-0">
                     <p class="alert alert-success">{{session("status")}}</p>
                 </div>
             @endif

@@ -50,7 +50,7 @@
         </div>
 
         @error("product_name")
-            <p class="alert alert-info">You've already added that product...</p>
+            <p class="alert alert-info mt-3">You've already added that product...</p>
         @enderror
     </div>
     <div class="row justify-content-center">    
